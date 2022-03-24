@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 # This file is part of beets.
 # Copyright 2016, Adrian Sampson.
 #
@@ -14,8 +12,19 @@
 # The above copyright notice and this permission notice shall be
 # included in all copies or substantial portions of the Software.
 
+from beets.plugins import BeetsPlugin
 
-import beets.ui
+class MyPlugin(BeetsPlugin):
+    def __init__(self):
+        super(MyPlugin, self).__init__()
+        self.template_fields['disc_and_track'] = _tmpl_disc_and_track
 
-if __name__ == '__main__':
-    beets.ui.main()
+def _tmpl_disc_and_track(item):
+    """Expand to the disc number and track number if this is a
+    multi-disc release. Otherwise, just expands to the track
+    number.
+    """
+    if item.disctotal > 1:
+        return u'%02i - %02i' % (item.disc, item.track)
+    else:
+        return u'%02i' % (item.track)
