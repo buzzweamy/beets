@@ -1,0 +1,14 @@
+#!/usr/bin/with-contenv bash
+
+# copy config
+[[ ! -e /config/beets.sh ]] && \
+	cp /defaults/beets.sh /config/beets.sh
+[[ ! -e /config/config.yaml ]] && \
+	cp /defaults/config.yaml /config/config.yaml
+[[ ! -e /config/.whatlastgenre/config ]] && \
+	mkdir -p /config/.whatlastgenre && \
+	cp /defaults/.whatlastgenre/config /config/.whatlastgenre/config
+
+# permissions
+chown -R abc:abc \
+	/config
