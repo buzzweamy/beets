@@ -1,0 +1,17 @@
+version: '3.1'
+
+services:
+  beets:
+    image: beets
+    container_name: beets
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/New_York
+    volumes:
+      - /mnt/c/beets/config:/config
+      - /mnt/c/beets/music:/music
+      - /mnt/c/beets/untagged:/downloads
+    ports:
+      - 8337:8337
+    restart: unless-stopped
