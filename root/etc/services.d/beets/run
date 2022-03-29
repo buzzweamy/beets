@@ -2,4 +2,4 @@
 umask 022
 
 exec \
-	s6-setuidgid abc beet web
+	s6-setuidgid abc beet server
