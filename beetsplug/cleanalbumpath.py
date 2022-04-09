@@ -30,7 +30,8 @@ class CleanAlbumPathPlugin(BeetsPlugin):
 
     def the_template_func(self, text):
         if text:
-            sanitized = re.sub(r'[\\\/\:\"\|\?\>\<\*\.]', ' ', text).rstrip()
+            sanitized = re.sub(r'[\\\/\:\"\|\?\>\<\*]', ' ', text).rstrip()
+            sanitized = re.sub(r'\.$', '', sanitized)
             return sanitized
         else:
             return ''
